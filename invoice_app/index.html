@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Nobile" rel="stylesheet">
+    <title>Invoice App</title>
+    <style>
+        body {
+            background-color: lightblue;
+            margin: 10% 4% 4% 4%;
+        }
+
+        .userContainer {
+            color: white; /*1*/
+            font-family:Georgia;/*2*/
+            background-color: #4D6076;/*3*/
+            display: flex;
+            height: 25em;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .invoiceContainer {
+            background-color: #4D6076;/*4*/
+            margin-top: 4em;
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            height: auto;
+        }
+
+        .userProfile {
+            border: 1px solid black;
+            display: flex;
+            width: 60%;
+            height: 100%;
+        }
+
+        .user {
+            height: auto;
+        }
+
+        #picContainer {
+            color: antiquewhite;/*5*/
+            width: 40%;
+            margin: 8% 0% 8% 3%;
+            background-color: #4D6076;/*6*/
+        }
+
+        #infoContainer {
+            margin: 5% 2% 2% 2%;
+            width: 60%;
+            font-family: Nobile;
+            font-size: 16px;
+        }
+
+        p {
+            font-size: 22px;
+        }
+
+        img {
+            box-shadow: 10px 10px 10px rgb(0, 132, 255);/*7*/
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .invoice {
+            font-family: fantasy;/*8*/
+            box-shadow: 8px 8px rgb(224, 227, 231);/*9*/
+            background-color: rgb(52, 55, 58);/*10*/
+            color: beige;
+            border: 1px solid black;
+            margin: 6% 3% 0% 3%;
+            padding: 2%;
+            width: 250px;
+            height: auto;
+
+        }
+
+        .invoice>p {
+            position: relative;
+            margin: 5px;
+            left: 25%;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="userContainer">
+        <div class="userProfile">
+            <div class="user" id="picContainer">
+                <img src="WIN_20180802_18_09_39_Pro.jpg" alt="my picture">
+            </div>
+            <div class="user" id="infoContainer">
+                name:
+                <p class="name"></p>
+                company name:
+                <p class="companyName"></p>
+                address:
+                <p class="address"></p>
+                email:
+                <p class="email"></p>
+            </div>
+        </div>
+    </div>
+    <p style="color: blueviolet">invoices</p>
+    <div class="invoiceContainer"></div>
+    <script>
+        //Fake it til you make it Database
+        var user = {
+            name: "nijhum jawad",
+            companyName: "FVI",
+            address: "7757 w flagler",
+            email: "nijhum_jawad2000@yahoo.com",
+            picture: ""
+        }
+
+        var invoices = [
+            {
+                inv_id: "0156321",
+                companyName: user.companyName,
+                date: "9/7/2017",
+                order: "Dell Computers",
+                amount: 3,
+                cost: 3457.67,
+                paid: 3457.67
+            },
+            {
+                inv_id: "0145632",
+                companyName: user.companyName,
+                date: "1/5/2017",
+                order: "HP Printers",
+                amount: 2,
+                cost: 248.00,
+                paid: 150.00
+            },
+            {
+                inv_id: "0132110",
+                companyName:user.companyName,
+                date: "6/14/2015",
+                order: "Marketing Coffee Mugs",
+                amount: 299,
+                cost: 414.00,
+                paid: 414.00
+            },
+            {
+                inv_id: "0132112",
+                companyName: "mercy",
+                date: "6/14/2016",
+                order: "buger",
+                amount: 500,
+                cost: 1000.00,
+                paid: 500.00
+            },
+            {
+                inv_id: "0132115",
+                companyName: "janina",
+                date: "6/14/2016",
+                order: "candy",
+                amount: 160,
+                cost: 160.00,
+                paid: 100.00
+            },
+            {
+                inv_id: "0132117",
+                companyName: "foodstore",
+                date: "6/14/2016",
+                order: "chips",
+                amount: 25,
+                cost: 25.00,
+                paid: 20.00
+            }
+
+        ]
+
+
+        //element selectors
+        document.querySelector(".name").textContent = user.name
+        document.querySelector(".companyName").textContent = user.companyName
+        document.querySelector(".address").textContent = user.address
+        document.querySelector(".email").textContent = user.email
+
+      //  adding invoices
+        for(var i=0; i<invoices.length; i++){
+            document.querySelector('.invoiceContainer').innerHTML += `
+            <div class="invoice" id=${invoices[i].inv_id}>
+                Invoice #:   <br/>    
+                <p>${invoices[i].inv_id} </p>
+                Company Name:   <br /> 
+                <p>${invoices[i].companyName} </p>
+                Date:  <br />
+                <p> ${invoices[i].date }</p>
+                Order:  <br />   
+                <p>${invoices[i].order} </p>
+                Amount:   <br />     
+                <p>${invoices[i].amount} </p>
+                Cost:       <br />    
+                <p>$${invoices[i].cost} </p>
+                Paid:       <br />   
+                <p> $${invoices[i].paid} </p>
+                Owed:        <br />   
+                <p>$${invoices[i].cost -invoices[i].paid} </p>
+            </div>
+            `
+        }
+
+    </script>
+</body>
+
+</html>
